@@ -11,21 +11,16 @@ describe("E2E test for product", () => {
     });
 
     it("should create products", async () => {
-        const response = await request(app)
-          .post("/product")
-          .send({
-            name: 'product 1',
-            price: 100,
-          });
-        
-         
-    
+      const response = await request(app)
+        .post("/product")
+        .send({
+          name: "Product 1",
+          price: 100,
+        });
+
         expect(response.status).toBe(200);
-        expect(response.body).toEqual({
-          id: response.body.id,
-          name: response.body.name,
-          price: response.body.price,
-        })
+        expect(response.body.name).toBe("Product 1");
+        expect(response.body.price).toBe(100);
       });
 
       it("should list products", async () => {
@@ -48,6 +43,6 @@ describe("E2E test for product", () => {
         const listResponse = await request(app).get("/product").send();
     
         expect(listResponse.status).toBe(200);
-        expect(listResponse.body.products.length).toBe(1);
+        expect(listResponse.body.products.length).toBe(2);
       })
 })
