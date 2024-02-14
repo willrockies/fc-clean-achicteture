@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import ProductRepository from "../../product/repository/sequelize/product.repository";
-import ListProductUseCase from "../../../usecase/Product/list/list.customer.usecase";
+import ListProductUseCase from "../../../usecase/Product/list/list.product.usecase";
 import CreateProductUseCase from "../../../usecase/Product/create/create.product.usecase";
 
 export const productRoute = express.Router();
