@@ -17,6 +17,7 @@
 
 import Entity from '../../@shared/entity/entity.abstract';
 import NotificationError from '../../@shared/notification/notification.error';
+import CustomerValidatorFactory from '../factory/customer.validator.factory';
 import Address from '../value-object/address';
 export default class Customer extends Entity {
   // private _id: string;
@@ -32,7 +33,7 @@ export default class Customer extends Entity {
     this._name = name;
     this.validate();
 
-    if(this.notification.hasErrors()) {
+    if (this.notification.hasErrors()) {
       throw new NotificationError(this.notification.getErrors())
     }
   }
@@ -58,6 +59,7 @@ export default class Customer extends Entity {
   }
 
   //entidade sempre vai se autovalidar
+/* 
   validate() {
     if (this.id.length === 0) {
       this.notification.addError({
@@ -72,6 +74,10 @@ export default class Customer extends Entity {
         message: "Name is required"
       });
     }
+  } */
+
+  validate() {
+    CustomerValidatorFactory.create().validate(this);
   }
 
   /*aqui estou aplicando de regra de negocio */
